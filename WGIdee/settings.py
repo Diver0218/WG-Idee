@@ -28,6 +28,10 @@ DEBUG = False
 #Um HTTPs verwenden zu können
 SECURE_SSL_REDIRECT = True
 
+#Cookies über HTTPS
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = [
     '0.0.0.0',
     'localhost',
