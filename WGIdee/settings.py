@@ -31,6 +31,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '192.168.137.1',
     '172.16.84.143',
+    'jamin.chickenkiller.com'
 ]
 
 
