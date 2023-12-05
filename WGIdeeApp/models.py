@@ -7,8 +7,6 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
     wert = models.FloatField(default=0.00)
 
-class Student(Person):
-    matrikelnr = models.IntegerField()
     
 class Ausgabe(models.Model):
     description = models.CharField(max_length=50)
