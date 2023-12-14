@@ -9,8 +9,8 @@ class Person(models.Model):
 
     
 class Ausgabe(models.Model):
-    description = models.CharField(max_length=50)
-    value = models.FloatField(default=0.00)
-    person = models.CharField(max_length=30)
+    Beschreibung = models.CharField(max_length=50)
+    Preis = models.FloatField(default=0.00)
+    Person = models.CharField(max_length=30)
 
     
