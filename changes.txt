@@ -1,0 +1,7 @@
+- html-pages mit template loader aktualisiert
+- calculations.py mit Hilfsfunktionen hinzugefügt
+- Seite mit Ausgabenliste hinzugefügt
+- Schulden von Person berechnen
+- PoC Bootstrap Frontend
+- Algorithmus um Ausgleich zuberechnen hinzugefügt
+- Anzeige für Ausgleich integriert
