@@ -3,10 +3,21 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <p>Noch keinen Account? Erstelle einen <a href="{% url 'sign_up' %}">hier</a>.</p>
-    <button type="submit" class="btn btn-success">Login</button>
-</form>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+            <form method="post">
+                {% csrf_token %}
+                <div class="card  shadow border">
+                    <div class="card-body">
+                        <h5 class="card-title">Login</h5>
+                        {{ form|crispy }}
+                        <p>Noch keinen Account? Erstelle einen <a href="{% url 'sign_up' %}">hier</a>.</p>
+                        <button type="submit" class="btn btn-success">Login</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

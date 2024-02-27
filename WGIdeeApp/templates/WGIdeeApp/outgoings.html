@@ -1,10 +1,22 @@
 {% extends 'WGIdeeApp/base.html' %}
 {% load static %}
 {% block title %}Ausgabenliste{% endblock %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <form method="post" action="{% url 'outgoings' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-success">Ausgabe hinzufügen</button>
-    </form>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-auto">
+                <form method="post" action="{% url 'outgoings' %}">
+                {% csrf_token %}
+                <div class="card  shadow border">
+                    <div class="card-body">
+                        <h5 class="card-title">Login</h5>
+                        {{ form|crispy }}
+                        <button type="submit" class="btn btn-success">Ausgabe hinzufügen</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

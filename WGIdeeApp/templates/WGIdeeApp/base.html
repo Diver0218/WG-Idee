@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>{% block title %}{% endblock %}</title>
     <link href="{% static 'WGIdeeApp\favicon.png' %}" rel="icon" type="img/png">
-    <link href="{% static 'WGIdeeApp\style.css' %}" rel="stylesheet" type="text/css">
+    {% comment %} <link href="{% static 'WGIdeeApp\style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
     {% block morestatics %}{% endblock %}
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -31,12 +31,12 @@
                 </ul>
                     {% if user.is_authenticated %}
                       <span class="navbar-text bg-dark">Als {{ user.vorname }} {{ user.nachname }} eingeloggt</span>
-                      <form class="d-flex" action="{% url 'logout' %}" method="POST">
+                      <form class="d-flex" action="{% url 'logout' %}" method="POST" role="search">
                         {% csrf_token %}
                         <button class="form-control shadow-none btn btn-outline-success navbar-btn" type="submit">Logout</button>
                       </form>
                     {% else %}
-                      <form class="d-flex bg-dark" action="{% url 'login' %}" method="POST">
+                      <form class="d-flex" action="{% url 'login' %}" method="POST" role="search">
                         {% csrf_token %}
                         <button class="form-control shadow-none btn btn-outline-success navbar-btn" type="submit">Login</button>
                       </form>
