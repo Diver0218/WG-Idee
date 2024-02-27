@@ -1,0 +1,11 @@
+{% extends 'WGIdeeApp/base.html' %}
+{% block title %}Sign Up{% endblock %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<form metohd="post">
+    {% csrf_token %}{{form|crispy}}
+    <p>Du hast schon einen Account? Logge dich <a href="{% url 'login' %}">hier</a> ein.</p>
+    <button type="submit" class="btn btn-success">Register</button>
+</form>
+{% endblock %}

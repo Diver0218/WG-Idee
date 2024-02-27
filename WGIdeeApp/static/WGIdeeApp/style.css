@@ -38,3 +38,7 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #45a049;
 }
+
+.form-control {
+    border: 0;
+}

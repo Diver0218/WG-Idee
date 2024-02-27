@@ -5,3 +5,5 @@
 - PoC Bootstrap Frontend
 - Algorithmus um Ausgleich zuberechnen hinzugefügt
 - Anzeige für Ausgleich integriert
+
+- Navbar hinzugefügt

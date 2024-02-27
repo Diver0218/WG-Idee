@@ -86,7 +86,7 @@ def compensation(Ausgaben_list, Person_list) -> list:
     pl = []
 
     for p in Person_list:
-        print(p)
+        #print(p)
         if p.debts != 0:
             pl.append(p)
 
@@ -96,36 +96,43 @@ def compensation(Ausgaben_list, Person_list) -> list:
 def compensation_recursive(pl: list, comp_list: list) -> list:
 
     pl.sort(key=lambda x: x.debts)
+    #print(pl)
 
     #Rekursionsbasis
     if len(pl) == 1:
-        print(comp_list)
+        #print(comp_list)
         return comp_list
 
     if pl[-1].debts < abs(pl[0].debts):
         to_pay = pl[-1].debts
         pl[-1].debts = 0
-        pl.remove(pl[-1])
         pl[0].debts += to_pay
         #print(to_pay)
         #print(pl[-1])
         #print(pl[0])
-    else:
-        to_pay = abs(pl[0].debts)
-        pl[0].debts = 0
-        pl.remove(pl[0])
-        pl[-1].debts -= to_pay
-        #print(to_pay)
-        #print(pl[-1])
-        #print(pl[0])
-
-    comp_list_object ={
+        comp_list_object ={
             'sender': pl[-1],
             'receiver': pl[0],
             'amount': to_pay
         }
-    print(comp_list_object)
+        pl.remove(pl[-1])
+    else:
+        to_pay = abs(pl[0].debts)
+        pl[0].debts = 0
+        pl[-1].debts -= to_pay
+        #print(to_pay)
+        #print(pl[-1])
+        #print(pl[0])
+        comp_list_object ={
+            'sender': pl[-1],
+            'receiver': pl[0],
+            'amount': to_pay
+        }
+        pl.remove(pl[0])
+
+    #print(comp_list_object)
     comp_list.append(comp_list_object)
+    #print(comp_list)
     compensation_recursive(pl, comp_list)
     return comp_list
 #endregion

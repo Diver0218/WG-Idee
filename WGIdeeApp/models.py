@@ -11,7 +11,7 @@ class Person(models.Model):
     debts = models.FloatField(default=0.00)
 
     def __str__(self) -> str:
-        return self.first_name + " " + self.last_name + ": " + str(self.debts)
+        return self.first_name + " " + self.last_name
     
     def calculate_value(self, Ausgabe_list):
         self.wert = 0

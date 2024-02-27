@@ -3,6 +3,7 @@ Of course it is implied that you have Python3 installed on your device
 
 in this venv or on your whole device you need to install the following packages:
 -django (pip install django)
+-crispy-bootstrap5 (pip install crispy-bootstrap5)
 
 
 everytime working with the Django app you need to activate the virtual environment:
