@@ -4,7 +4,8 @@
 
 {% block content %}
 <form metohd="post">
-    {% csrf_token %}{{form|crispy}}
+    {% csrf_token %}
+    {{ form.as_p }}
     <p>Noch keinen Account? Erstelle einen <a href="{% url 'sign_up' %}">hier</a>.</p>
     <button type="submit" class="btn btn-success">Login</button>
 </form>
