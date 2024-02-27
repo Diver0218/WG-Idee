@@ -138,5 +138,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'WGIdee/home/'
+LOGIN_REDIRECT_URL = '/WGIdee/home/'
 LOGOUT_REDIRECT_URL = '/WGIdee/login/'
