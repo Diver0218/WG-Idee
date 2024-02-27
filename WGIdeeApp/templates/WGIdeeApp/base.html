@@ -30,7 +30,7 @@
                   </li>
                 </ul>
                     {% if user.is_authenticated %}
-                      <span class="navbar-text bg-dark">Als {{user.vorname}} {{user.nachname}} eingeloggt</span>
+                      <span class="navbar-text bg-dark">Als {{ user.vorname }} {{ user.nachname }} eingeloggt</span>
                       <form class="d-flex" action="{% url 'logout' %}" method="POST">
                         {% csrf_token %}
                         <button class="form-control shadow-none btn btn-outline-success navbar-btn" type="submit">Logout</button>
