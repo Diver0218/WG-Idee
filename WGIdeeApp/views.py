@@ -5,11 +5,13 @@ from django.template import loader
 from . import forms
 from WGIdeeApp.models import *
 from WGIdeeApp.calculations import *
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout, authenticate, get_user, get_user_model
+from django.contrib.auth.decorators import login_required
 
 import WGIdeeApp
 
 # Create your views here.
+@login_required(login_url="/WGIdee/login/")
 def landingPage(request):
 
     template = loader.get_template("WGIdeeApp/landingPage.html")
@@ -17,7 +19,7 @@ def landingPage(request):
     return HttpResponse(template.render(request=request))
 
 
-
+@login_required(login_url="/WGIdee/login/")
 def outgoings(request):
     if request.method == 'POST':
         form = forms.AusgabenForm(request.POST)
@@ -31,11 +33,10 @@ def outgoings(request):
     context = {
         'form': form
     }
-
     return HttpResponse(template.render(context, request))
 
 
-
+@login_required(login_url="/WGIdee/login/")
 def list(request):
     Ausgaben_list = Ausgabe.objects.all()
     Person_list = Person.objects.all()
@@ -51,7 +52,6 @@ def list(request):
         'Person_list': Person_list,
         'comp_list': comp_list,
     }
-
     return HttpResponse(template.render(context, request))
 
 
