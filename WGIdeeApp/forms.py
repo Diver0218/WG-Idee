@@ -9,10 +9,10 @@ class AusgabenForm(forms.ModelForm):
         fields = ['Beschreibung','Preis','Person']
         
 class RegisterForm(UserCreationForm):
-    vorname = forms.CharField(required=True)
-    nachname = forms.CharField(required=True)
+    first_name = forms.CharField(required=True)
+    last_name = forms.CharField(required=True)
     email = forms.EmailField(required=True)
 
     class Meta:
         model = authModels.User
-        fields = ["username", "vorname", "nachname", "email", "password1", "password2"]
+        fields = ["username", "first_name", "last_name", "email", "password1", "password2"]

@@ -6,6 +6,7 @@ from . import forms
 from WGIdeeApp.models import *
 from WGIdeeApp.calculations import *
 from django.contrib.auth import login, logout, authenticate, get_user, get_user_model
+from django.contrib.auth import models as authModels
 from django.contrib.auth.decorators import login_required
 
 import WGIdeeApp
@@ -40,10 +41,14 @@ def outgoings(request):
 def list(request):
     Ausgaben_list = Ausgabe.objects.all()
     Person_list = Person.objects.all()
-    comp_list = compensation(Ausgaben_list, Person_list)
-    calculate_value_all(Person_list, Ausgaben_list)
-    calculate_debts_all(Person_list, Ausgaben_list)
-    Summe = get_sum(Ausgaben_list)
+    if (Ausgaben_list.exists() and Person_list.exists()):
+        comp_list = compensation(Ausgaben_list, Person_list)
+        calculate_value_all(Person_list, Ausgaben_list)
+        calculate_debts_all(Person_list, Ausgaben_list)
+        Summe = get_sum(Ausgaben_list)
+    else:
+        Summe = 0
+        comp_list = []
 
     template = loader.get_template("WGIdeeApp/list.html")
     context = {
@@ -61,6 +66,8 @@ def sign_up(request):
         form = forms.RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
+            person = Person(zugew_user=user)
+            person.save()
             login(request, user)
             return redirect('landingPage')
     else:

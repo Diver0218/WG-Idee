@@ -12,6 +12,26 @@ def calculate_debts_all(Person_list, Ausgaben_list):
     for p in Person_list:
         p.calculate_debts(Ausgaben_list, Person_list)
 
+#################
+#region ehemalige Person Funktionen, jetzt unabhängig von Objekt
+#################
+
+
+# def calculate_value(user, Ausgabe_list):
+#     user.wert = 0
+#     for a in Ausgabe_list:
+#         if user == a.Person:
+#             user.wert += a.Preis
+
+# def calculate_debts(user, Ausgaben_list, Person_list):
+#     user.calculate_value(Ausgaben_list)
+#     sum = get_sum(Ausgaben_list)
+#     Person_count = Person_list.count()
+#     average = sum / Person_count
+#     user.debts = average - user.wert
+
+
+#endregion
 
 #################
 #region Compensation testing
