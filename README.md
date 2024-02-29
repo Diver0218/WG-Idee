@@ -8,6 +8,7 @@ in this venv or on your whole device you need to install the following packages:
 
 everytime working with the Django app you need to activate the virtual environment:
 .\env\Scripts\activate
+<!-- .venv\Scripts\activate -->
 you can deactivate it by using deactivate
 
 
