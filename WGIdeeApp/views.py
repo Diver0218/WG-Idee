@@ -86,6 +86,7 @@ def sign_up(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url="/WGIdee/login/")
 def persons(request):
     Ausgaben_list = Ausgabe.objects.all()
     Person_list = Person.objects.all()
@@ -98,6 +99,7 @@ def persons(request):
     }
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url="/WGIdee/login/")
 def ausgleich(request):
     Ausgaben_list = Ausgabe.objects.all()
     Person_list = Person.objects.all()
