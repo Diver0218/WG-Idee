@@ -1,6 +1,7 @@
 {% extends 'WGIdeeApp/base.html' %}
 {% load static %}
 {% block title %}Alle Personen{% endblock %}
+{% block persons_state %}active{% endblock %}
 {% block morestatics %}
 {% comment %} <link href="{% static 'WGIdeeApp\list-style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
 {% endblock %}
@@ -13,11 +14,11 @@
                     <div class="card-header">
                         <h2>Alle Personen</h2>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body text-center">
                         {% if Person_list %}
-                            <ul class="list-group mb-3">
+                            <ul class="list-group mb-3 text-center">
                                 {% for Person in Person_list %}
-                                    <ul class="list-group list-group-horizontal mb-3">
+                                    <ul class="list-group list-group-horizontal mb-3 text-center">
                                         <li class="list-group-item">
                                             <h4>{{ Person.zugew_user.first_name }} {{ Person.zugew_user.last_name }}:</h4>
                                         </li>
@@ -33,7 +34,7 @@
                             <h3>Noch keine Person verfügbar</h3>
                         {% endif %}
                         <a href="{% url 'list' %}">
-                            <button type="submit" class="btn btn-success">Ausgleich anzeigen</button>
+                            <button type="submit" class="btn btn-success mt-3">Ausgleich anzeigen</button>
                         </a>
                     </div>
                 </div>

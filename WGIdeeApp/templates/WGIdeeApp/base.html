@@ -27,23 +27,23 @@
           </li>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'list' %}">Alle Ausgaben</a>
+              <a class="nav-link me-2 {% block list_state %}{% endblock %}" href="{% url 'list' %}">Alle Ausgaben</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'persons' %}">Alle Personen</a>
+              <a class="nav-link me-2 {% block persons_state %}{% endblock %}" href="{% url 'persons' %}">Alle Personen</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'ausgleich' %}">Ausgleich</a>
+              <a class="nav-link me-2 {% block ausgleich_state %}{% endblock %}" href="{% url 'ausgleich' %}">Ausgleich</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'outgoings' %}">Neue Ausgabe</a>
+              <a class="nav-link me-2 {% block outgoings_state %}{% endblock %}" href="{% url 'outgoings' %}">Neue Ausgabe</a>
             </li>
           </div>
         </ul>
         <ul class="navbar-nav">
           {% if user.is_authenticated %}
           <li class="nav-item">
-            <span class="navbar-text bg-dark">Als {{ user.first_name }} {{ user.last_name }} eingeloggt</span>
+            <span class="navbar-text bg-dark me-3">Als {{ user.first_name }} {{ user.last_name }} ({{ user.username }}) eingeloggt</span>
           </li>
           <li class="nav-item">
             <form class="d-flex" action="{% url 'logout' %}" method="POST" role="search">
