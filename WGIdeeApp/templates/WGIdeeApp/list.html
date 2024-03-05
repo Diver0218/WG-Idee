@@ -11,7 +11,7 @@
 
         {% for Ausgabe in Ausgaben_list %}
             <li class="list-group-item mb-3">
-                <h3>{{ Ausgabe.Beschreibung }}:            {{ Ausgabe.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ Ausgabe.Person.first_name}}  {{ Ausgabe.Person.last_name }}) <br/></h3>
+                <h3>{{ Ausgabe.Beschreibung }}:            {{ Ausgabe.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ Ausgabe.Person.zugew_user.first_name}}  {{ Ausgabe.Person.zugew_user.last_name }}) <br/></h3>
             </li>
         {% endfor %}
     </ul>
@@ -27,7 +27,7 @@
                 {% for Person in Person_list %}
                 <ul class="list-group list-group-horizontal mb-3">
                     <li class="list-group-item">
-                        <h3>{{ Person.first_name }} {{ Person.last_name }}:</h3>
+                        <h3>{{ Person.zugew_user.first_name }} {{ Person.zugew_user.last_name }}:</h3>
                     </li>
                     <li class="list-group-item">
                         <p>Hat Geld ausgegeben: {{ Person.wert|floatformat:2 }} &#8364;</p>
@@ -49,7 +49,7 @@
                 <div class="card mb-3 shadow border">
                     <div class="row">
                         <div class="col">
-                            <h4>{{ comp.sender.first_name }} {{ comp.sender.last_name }}</h4>
+                            <h4>{{ comp.sender.zugew_user.first_name }} {{ comp.sender.zugew_user.last_name }}</h4>
                         </div>
                         <div class="col">
                             <h1>&#10152;</h1>
@@ -61,17 +61,21 @@
                             <h1>&#10152;</h1>
                         </div>
                         <div class="col">
-                            <h4>{{ comp.receiver.first_name }} {{ comp.receiver.last_name }}</h4>
+                            <h4>{{ comp.receiver.zugew_user.first_name }} {{ comp.receiver.zugew_user.last_name }}</h4>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
             {% else %}
-                <h1>Keine Compensation list verfügbar</h1>
+            <div class="container text-center">
+                <h1>Keine Ausgleich verfügbar</h1>
+            </div>
             {% endif %}
 
     {% else %}
+    <div class="container text-center">
         <h1>Keine Ausgabe-Objekte verfügbar</h1> 
+    </div>
     {% endif %}
 {% endblock %}

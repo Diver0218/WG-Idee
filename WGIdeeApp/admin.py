@@ -5,7 +5,7 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 # Register your models here.
 
 admin.site.register(Ausgabe)
-#admin.site.register(Person)
+admin.site.register(Person)
 
 class PersonInline(admin.StackedInline):
     model = Person

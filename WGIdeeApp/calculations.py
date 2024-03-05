@@ -1,3 +1,4 @@
+from asyncio.windows_events import NULL
 from multiprocessing.managers import BaseManager
 from .models import *
 
@@ -37,8 +38,11 @@ def calculate_debts_all(Person_list, Ausgaben_list):
 #region Compensation testing
 #################
 
-def compensation(Ausgaben_list, Person_list) -> list:
+def compensation(Ausgaben_list, Person_list):
 
+    if len(Person_list) == 1:
+        return NULL
+    
     calculate_debts_all(Person_list, Ausgaben_list)
 
     comp_list = []
