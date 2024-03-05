@@ -1,0 +1,44 @@
+{% extends 'WGIdeeApp/base.html' %}
+{% load static %}
+{% block title %}Alle Personen{% endblock %}
+{% block morestatics %}
+{% comment %} <link href="{% static 'WGIdeeApp\list-style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
+{% endblock %}
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-center shadow border" style="width: 50rem;">
+                    <div class="card-header">
+                        <h2>Alle Personen</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if Person_list %}
+                            <ul class="list-group mb-3">
+                                {% for Person in Person_list %}
+                                    <ul class="list-group list-group-horizontal mb-3">
+                                        <li class="list-group-item">
+                                            <h4>{{ Person.zugew_user.first_name }} {{ Person.zugew_user.last_name }}:</h4>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <p>Hat Geld ausgegeben: {{ Person.wert|floatformat:2 }} &#8364;</p>
+                                        </li>
+                                        <li class="list-group-item">
+                                            <p>Noch zu Zahlen: {{ Person.debts|floatformat:2 }} &#8364;</p>
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                        {% else %}
+                            <h3>Noch keine Person verfügbar</h3>
+                        {% endif %}
+                        <a href="{% url 'list' %}">
+                            <button type="submit" class="btn btn-success">Ausgleich anzeigen</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends 'WGIdeeApp/base.html' %}
+{% load static %}
+{% block title %}Ausgleich{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-center shadow border" style="width: 50rem;">
+                    <div class="card-header">
+                        <h2>Ausgleich</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if comp_list %}
+                            <div class="container text-center">
+                                {% for comp in comp_list %}
+                                    <div class="card mb-3 border mt-5">
+                                        <div class="row mb-3 mt-3">
+                                            <div class="col">
+                                                <h4>{{ comp.sender.zugew_user.first_name }} {{ comp.sender.zugew_user.last_name }}</h4>
+                                            </div>
+                                            <div class="col">
+                                                <h1>&#10152;</h1>
+                                            </div>
+                                            <div class="col">
+                                                <h4>{{ comp.amount|floatformat:2 }} &#8364;</h4><br/>
+                                            </div>
+                                            <div class="col">
+                                                <h1>&#10152;</h1>
+                                            </div>
+                                            <div class="col">
+                                                <h4>{{ comp.receiver.zugew_user.first_name }} {{ comp.receiver.zugew_user.last_name }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="container text-center">
+                                <h1>Keine Ausgleich verfügbar</h1>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

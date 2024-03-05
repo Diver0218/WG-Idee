@@ -1,7 +1,11 @@
+import datetime
+from email.policy import default
+from time import timezone
 from typing import Any
 from django.db import models
 from .calculations import get_sum
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -33,7 +37,8 @@ class Ausgabe(models.Model):
     Beschreibung = models.CharField(max_length=50)
     Preis = models.FloatField(default=0.00)
     #Person = models.CharField(max_length=50)
-    Person = models.ForeignKey(Person, on_delete=models.CASCADE) 
+    Person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    Ausgabedatum = models.DateField(default=timezone.now)
 
     def __str__(self) -> str:
         return self.Beschreibung

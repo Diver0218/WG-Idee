@@ -1,81 +1,42 @@
 {% extends 'WGIdeeApp/base.html' %}
 {% load static %}
-{% block title %}Ausgabenliste{% endblock %}
+{% block title %}Alle Ausgaben{% endblock %}
 {% block morestatics %}
 {% comment %} <link href="{% static 'WGIdeeApp\list-style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
 {% endblock %}
 {% block content %}
-    {% if Ausgaben_list %}
-    <div class="container text-center">
-        <ul class="list-group list-group-flush">
 
-        {% for Ausgabe in Ausgaben_list %}
-            <li class="list-group-item mb-3">
-                <h3>{{ Ausgabe.Beschreibung }}:            {{ Ausgabe.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ Ausgabe.Person.zugew_user.first_name}}  {{ Ausgabe.Person.zugew_user.last_name }}) <br/></h3>
-            </li>
-        {% endfor %}
-    </ul>
-    </div>
-        <br/><br/><br/><br/>
-        <div class="container text-center">
-            <h1>Summe: {{ Summe|floatformat:2 }} &#8364;</h1>
-        </div>
-        <br/><br/><br/><br/>
-            {% if Person_list %}
-            <div class="container text-center">
-                <ul class="list-group mb-3">
-                {% for Person in Person_list %}
-                <ul class="list-group list-group-horizontal mb-3">
-                    <li class="list-group-item">
-                        <h3>{{ Person.zugew_user.first_name }} {{ Person.zugew_user.last_name }}:</h3>
-                    </li>
-                    <li class="list-group-item">
-                        <p>Hat Geld ausgegeben: {{ Person.wert|floatformat:2 }} &#8364;</p>
-                    </li>
-                    <li class="list-group-item">
-                        <p>Noch zu Zahlen: {{ Person.debts|floatformat:2 }} &#8364;</p>
-                    </li>
-                </ul>
-                {% endfor %}
-            </div>
-            {% else %}
-                <h1>Keine Person-Objekte verfügbar</h1>
-            {% endif %}
+    <div class="container mt-5">
+        <div class="row justify-content-md-center">
+            <div class="col-md-auto">
+                <div class="card text-center shadow border" style="width: 50rem;">
+                    <div class="card-header">
+                        <h2>Alle Personen</h2>
+                    </div>
+                    <div class="card-body">
+                        {% if Ausgaben_list %}
+                            <div class="container text-center justify-content-center">
+                                {% for Ausgabe in Ausgaben_list %}
+                                    <div class="card border mt-3">
+                                        <div class="row">
+                                            <h4 class="mt-3 mb-3">{{ Ausgabe.Beschreibung }}:            {{ Ausgabe.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ Ausgabe.Person.zugew_user.first_name}}  {{ Ausgabe.Person.zugew_user.last_name }}) </h4>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <div class="container text-center mt-5">
+                                <h1>Summe: {{ Summe|floatformat:2 }} &#8364;</h1>
+                            </div>
 
-            <br/><br/><br/><br/>
-            {% if comp_list %}
-            <div class="container text-center">
-                {% for comp in comp_list %}
-                <div class="card mb-3 shadow border">
-                    <div class="row">
-                        <div class="col">
-                            <h4>{{ comp.sender.zugew_user.first_name }} {{ comp.sender.zugew_user.last_name }}</h4>
-                        </div>
-                        <div class="col">
-                            <h1>&#10152;</h1>
-                        </div>
-                        <div class="col">
-                            <h4>{{ comp.amount|floatformat:2 }} &#8364;</h4><br/>
-                        </div>
-                        <div class="col">
-                            <h1>&#10152;</h1>
-                        </div>
-                        <div class="col">
-                            <h4>{{ comp.receiver.zugew_user.first_name }} {{ comp.receiver.zugew_user.last_name }}</h4>
-                        </div>
+                        {% else %}
+                            <div class="container text-center">
+                                <h1>Keine Ausgabe-Objekte verfügbar</h1> 
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
-                {% endfor %}
             </div>
-            {% else %}
-            <div class="container text-center">
-                <h1>Keine Ausgleich verfügbar</h1>
-            </div>
-            {% endif %}
-
-    {% else %}
-    <div class="container text-center">
-        <h1>Keine Ausgabe-Objekte verfügbar</h1> 
+        </div>
     </div>
-    {% endif %}
+
 {% endblock %}

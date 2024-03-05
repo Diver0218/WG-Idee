@@ -8,9 +8,11 @@
         <div class="col-md-auto">
                 <form method="post" action="{% url 'outgoings' %}">
                 {% csrf_token %}
-                <div class="card  shadow border">
+                <div class="card shadow border mt-5">
+                    <div class="card-header text-center">
+                        <h2>Ausgabe</h2>
+                    </div>
                     <div class="card-body">
-                        <h5 class="card-title">Login</h5>
                         {{ form|crispy }}
                         <button type="submit" class="btn btn-success">Ausgabe hinzufügen</button>
                     </div>

@@ -14,10 +14,17 @@ import WGIdeeApp
 # Create your views here.
 @login_required(login_url="/WGIdee/login/")
 def landingPage(request):
-
+    recent_Ausgabe = Ausgabe.objects.all().order_by('-Ausgabedatum')[:10]
+    Ausgaben_list = Ausgabe.objects.all()
+    Person_list = Person.objects.all().order_by('-debts')[:5]
+    calculate_value_all(Person_list, Ausgaben_list)
+    calculate_debts_all(Person_list, Ausgaben_list)
     template = loader.get_template("WGIdeeApp/landingPage.html")
-
-    return HttpResponse(template.render(request=request))
+    context = {
+        'recent_Ausgabe': recent_Ausgabe,
+        'Person_list': Person_list,
+    }
+    return HttpResponse(template.render(request=request, context=context))
 
 
 @login_required(login_url="/WGIdee/login/")
@@ -76,5 +83,33 @@ def sign_up(request):
     template = loader.get_template("registration/sign_up.html")
     context = {
         'form': form
+    }
+    return HttpResponse(template.render(context, request))
+
+def persons(request):
+    Ausgaben_list = Ausgabe.objects.all()
+    Person_list = Person.objects.all()
+    calculate_value_all(Person_list, Ausgaben_list)
+    calculate_debts_all(Person_list, Ausgaben_list)
+
+    template = loader.get_template("WGIdeeApp/persons.html")
+    context = {
+        'Person_list' : Person_list,
+    }
+    return HttpResponse(template.render(context, request))
+
+def ausgleich(request):
+    Ausgaben_list = Ausgabe.objects.all()
+    Person_list = Person.objects.all()
+    if (Ausgaben_list.exists() and Person_list.exists()):
+        comp_list = compensation(Ausgaben_list, Person_list)
+        calculate_value_all(Person_list, Ausgaben_list)
+        calculate_debts_all(Person_list, Ausgaben_list)
+    else:
+        comp_list = []
+
+    template = loader.get_template("WGIdeeApp/ausgleich.html")
+    context = {
+        'comp_list': comp_list,
     }
     return HttpResponse(template.render(context, request))
