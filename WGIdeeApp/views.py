@@ -11,18 +11,17 @@ from django.contrib.auth.decorators import login_required
 
 import WGIdeeApp
 
-# Create your views here.
 @login_required(login_url="/WGIdee/login/")
-def landingPage(request):
-    recent_Ausgabe = Ausgabe.objects.all().order_by('-Ausgabedatum')[:10]
-    Ausgaben_list = Ausgabe.objects.all()
-    Person_list = Person.objects.all().order_by('-debts')[:5]
-    calculate_value_all(Person_list, Ausgaben_list)
-    calculate_debts_all(Person_list, Ausgaben_list)
-    template = loader.get_template("WGIdeeApp/landingPage.html")
+def landing_page(request):
+    recent_ausgabe = Ausgabe.objects.all().order_by('-ausgabedatum')[:10]
+    ausgaben_list = Ausgabe.objects.all()
+    person_list = Person.objects.all().order_by('-debts')[:5]
+    calculate_value_all(person_list, ausgaben_list)
+    calculate_debts_all(person_list, ausgaben_list)
+    template = loader.get_template("WGIdeeApp/landing_page.html")
     context = {
-        'recent_Ausgabe': recent_Ausgabe,
-        'Person_list': Person_list,
+        'recent_ausgabe': recent_ausgabe,
+        'person_list': person_list,
     }
     return HttpResponse(template.render(request=request, context=context))
 
@@ -33,7 +32,7 @@ def outgoings(request):
         form = forms.AusgabenForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('landingPage')
+            return redirect('landing_page')
     else:
         form = forms.AusgabenForm()
 
@@ -46,22 +45,22 @@ def outgoings(request):
 
 @login_required(login_url="/WGIdee/login/")
 def list(request):
-    Ausgaben_list = Ausgabe.objects.all()
-    Person_list = Person.objects.all()
-    if (Ausgaben_list.exists() and Person_list.exists()):
-        comp_list = compensation(Ausgaben_list, Person_list)
-        calculate_value_all(Person_list, Ausgaben_list)
-        calculate_debts_all(Person_list, Ausgaben_list)
-        Summe = get_sum(Ausgaben_list)
+    ausgaben_list = Ausgabe.objects.all()
+    person_list = Person.objects.all()
+    if (ausgaben_list.exists() and person_list.exists()):
+        comp_list = compensation(ausgaben_list, person_list)
+        calculate_value_all(person_list, ausgaben_list)
+        calculate_debts_all(person_list, ausgaben_list)
+        summe = get_sum(ausgaben_list)
     else:
-        Summe = 0
+        summe = 0
         comp_list = []
 
     template = loader.get_template("WGIdeeApp/list.html")
     context = {
-        'Ausgaben_list': Ausgaben_list,
-        'Summe': Summe,
-        'Person_list': Person_list,
+        'ausgaben_list': ausgaben_list,
+        'summe': summe,
+        'person_list': person_list,
         'comp_list': comp_list,
     }
     return HttpResponse(template.render(context, request))
@@ -76,7 +75,7 @@ def sign_up(request):
             person = Person(zugew_user=user)
             person.save()
             login(request, user)
-            return redirect('landingPage')
+            return redirect('landing_page')
     else:
         form = forms.RegisterForm()
 
@@ -88,25 +87,25 @@ def sign_up(request):
 
 @login_required(login_url="/WGIdee/login/")
 def persons(request):
-    Ausgaben_list = Ausgabe.objects.all()
-    Person_list = Person.objects.all()
-    calculate_value_all(Person_list, Ausgaben_list)
-    calculate_debts_all(Person_list, Ausgaben_list)
+    ausgaben_list = Ausgabe.objects.all()
+    person_list = Person.objects.all()
+    calculate_value_all(person_list, ausgaben_list)
+    calculate_debts_all(person_list, ausgaben_list)
 
     template = loader.get_template("WGIdeeApp/persons.html")
     context = {
-        'Person_list' : Person_list,
+        'person_list' : person_list,
     }
     return HttpResponse(template.render(context, request))
 
 @login_required(login_url="/WGIdee/login/")
 def ausgleich(request):
-    Ausgaben_list = Ausgabe.objects.all()
-    Person_list = Person.objects.all()
-    if (Ausgaben_list.exists() and Person_list.exists()):
-        comp_list = compensation(Ausgaben_list, Person_list)
-        calculate_value_all(Person_list, Ausgaben_list)
-        calculate_debts_all(Person_list, Ausgaben_list)
+    ausgaben_list = Ausgabe.objects.all()
+    person_list = Person.objects.all()
+    if (ausgaben_list.exists() and person_list.exists()):
+        comp_list = compensation(ausgaben_list, person_list)
+        calculate_value_all(person_list, ausgaben_list)
+        calculate_debts_all(person_list, ausgaben_list)
     else:
         comp_list = []
 

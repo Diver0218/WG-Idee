@@ -6,7 +6,7 @@ from django.contrib.auth import models as authModels
 class AusgabenForm(forms.ModelForm):
     class Meta:
         model = models.Ausgabe
-        fields = ['Beschreibung','Preis','Person', 'Ausgabedatum']
+        fields = ['beschreibung','preis','person', 'ausgabedatum']
         
 class RegisterForm(UserCreationForm):
     first_name = forms.CharField(required=True)
