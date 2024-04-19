@@ -10,12 +10,12 @@
                     <h2>Letzte Ausgaben</h2>
                 </div>
                 <div class="card-body">
-                    {% if recent_Ausgabe %}
+                    {% if recent_ausgabe %}
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item"></li>
-                            {% for a in recent_Ausgabe %}
+                            {% for ausgabe in recent_ausgabe %}
                                 <li class="list-group-item">
-                                    <h4>{{ a.Beschreibung }}:            {{ a.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ a.Person.zugew_user.first_name}}  {{ a.Person.zugew_user.last_name }})</h4>
+                                    <h4>{{ ausgabe.beschreibung }}:            {{ ausgabe.preis|floatformat:2 }} &#8364;   (gezahlt von {{ ausgabe.person.zugew_user.first_name}}  {{ ausgabe.person.zugew_user.last_name }})</h4>
                                 </li>
                             {% endfor %}
                             <li class="list-group-item"></li>
@@ -35,18 +35,18 @@
                     <h2>Höchste Schulden</h2> 
                 </div>
                 <div class="card-body">
-                    {% if Person_list %}
+                    {% if person_list %}
                         <ul class="list-group list-group-flush">
-                                {% for Person in Person_list %}
+                                {% for person in person_list %}
                                     <ul class="list-group list-group-horizontal mb-3">
                                         <li class="list-group-item">
-                                            <h3>{{ Person.zugew_user.first_name }} {{ Person.zugew_user.last_name }}:</h3>
+                                            <h3>{{ person.zugew_user.first_name }} {{ person.zugew_user.last_name }}:</h3>
                                         </li>
                                         <li class="list-group-item">
-                                            <p>Hat Geld ausgegeben: {{ Person.wert|floatformat:2 }} &#8364;</p>
+                                            <p>Hat Geld ausgegeben: {{ person.wert|floatformat:2 }} &#8364;</p>
                                         </li>
                                         <li class="list-group-item">
-                                            <p>Noch zu Zahlen: {{ Person.debts|floatformat:2 }} &#8364;</p>
+                                            <p>Noch zu Zahlen: {{ person.debts|floatformat:2 }} &#8364;</p>
                                         </li>
                                     </ul>
                                 {% endfor %}

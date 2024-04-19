@@ -15,12 +15,12 @@
                         <h2>Alle Personen</h2>
                     </div>
                     <div class="card-body">
-                        {% if Ausgaben_list %}
+                        {% if ausgaben_list %}
                             <div class="container text-center justify-content-center">
-                                {% for Ausgabe in Ausgaben_list %}
+                                {% for ausgabe in ausgaben_list %}
                                     <div class="card border mt-3">
                                         <div class="row">
-                                            <h4 class="mt-3 mb-3">{{ Ausgabe.Beschreibung }}:            {{ Ausgabe.Preis|floatformat:2 }} &#8364;   (gezahlt von {{ Ausgabe.Person.zugew_user.first_name}}  {{ Ausgabe.Person.zugew_user.last_name }}) </h4>
+                                            <h4 class="mt-3 mb-3">{{ ausgabe.beschreibung }}:            {{ ausgabe.preis|floatformat:2 }} &#8364;   (gezahlt von {{ ausgabe.person.zugew_user.first_name}}  {{ Ausgabe.person.zugew_user.last_name }}) </h4>
                                         </div>
                                     </div>
                                 {% endfor %}
