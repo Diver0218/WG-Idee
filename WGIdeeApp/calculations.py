@@ -15,10 +15,10 @@ def calculate_debts_all(person_list, ausgaben_list):
     for p in person_list:
         p.calculate_debts(ausgaben_list, person_list)
 
-def compensation(ausgaben_list, person_list):
+def compensation(ausgaben_list, person_list) -> list:
 
     if len(person_list) == 1:
-        return NULL
+        return []
     
     calculate_debts_all(person_list, ausgaben_list)
 
@@ -63,5 +63,4 @@ def compensation_recursive(pl: list, comp_list: list) -> list:
         pl.remove(pl[0])
 
     comp_list.append(comp_list_object)
-    compensation_recursive(pl, comp_list)
-    return comp_list
+    return compensation_recursive(pl, comp_list)
