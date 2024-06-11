@@ -1,4 +1,4 @@
-from asyncio.windows_events import NULL
+#from asyncio.windows_events import NULL
 from multiprocessing.managers import BaseManager
 from .models import *
 
@@ -64,3 +64,5 @@ def compensation_recursive(pl: list, comp_list: list) -> list:
 
     comp_list.append(comp_list_object)
     return compensation_recursive(pl, comp_list)
+
+
